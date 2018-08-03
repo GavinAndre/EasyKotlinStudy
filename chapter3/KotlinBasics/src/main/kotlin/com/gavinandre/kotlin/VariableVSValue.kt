@@ -31,6 +31,7 @@ class VariableVSValue {
         val e: Int //如果没有初始值类型不能省略
         e = 3 //明确赋值
         println("c= $c ,d= $d ,e=$e")
+
     }
 
     fun typeInference() {
