@@ -19,5 +19,10 @@ class ForDemo {
         for (str in strArray) {
             println("String: $str")
         }
+        //lambda初始化array
+        val intArray1 = Array(5, { i -> i + 1 })
+        intArray1.forEach {
+            println("foreach $it")
+        }
     }
 }
