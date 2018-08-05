@@ -10,9 +10,11 @@ class StringDemoTest {
 
     @Test
     fun testStringDemo() {
-        val rawString = stringDemo.rawString()
-        println("raw String: $rawString")
-        println("template String: ${stringDemo.templateString(rawString)}")
+        val rawString1 = stringDemo.rawString1()
+        println("raw String: \n$rawString1")
+        val rawString2 = stringDemo.rawString2()
+        println("raw String: \n$rawString2")
+        println("template String: \n${stringDemo.templateString(rawString1)}")
     }
 
 }
