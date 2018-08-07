@@ -57,4 +57,9 @@ class ListDemoTest {
         groupList()
     }
 
+    @Test
+    fun testSortList() {
+        sortList()
+    }
+
 }

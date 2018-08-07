@@ -300,3 +300,8 @@ fun groupList() {
     val words1 = "one two three four five six seven eight nine ten".split(' ')
     println(words1.groupingBy { it.first() }.eachCount())
 }
+
+fun sortList() {
+    val list = listOf(1,2,3)
+    println(list.reversed())
+}
