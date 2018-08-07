@@ -33,8 +33,28 @@ class ListDemoTest {
     }
 
     @Test
-    fun testOperateList() {
-        operateList()
+    fun testOperateList1() {
+        operateList1()
+    }
+
+    @Test
+    fun testOperateList2() {
+        operateList2()
+    }
+
+    @Test
+    fun testFilterList() {
+        filterList()
+    }
+
+    @Test
+    fun testMapList() {
+        mapList()
+    }
+
+    @Test
+    fun testGroupList() {
+        groupList()
     }
 
 }

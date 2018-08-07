@@ -73,7 +73,7 @@ fun foreachList() {
     list.forEach(::print)
 }
 
-fun operateList() {
+fun operateList1() {
     println("add")
     val list = mutableListOf(1, 2, 3)
     list.add(4)
@@ -142,4 +142,161 @@ fun operateList() {
     println(sList2.single { it == 1 })
     println(sList2.singleOrNull { it == 7 })
     println(sList2.singleOrNull { it == 10 })
+}
+
+fun operateList2() {
+    val emptyList = listOf<Int>()
+    val sList = listOf("a", "b", "c")
+    val list1 = listOf(1)
+    val list3 = listOf(1, 2, 3)
+    val list4 = listOf(1, 2, 3, 4)
+    val list5 = listOf(0, 2, 4, 6, 8)
+    val list6 = listOf(0, 2, 4, 6, 8, 9)
+    val list9 = listOf(1, 2, 3, 4, 5, 6, 7, 8, 9)
+    val hList = listOf(100, -500, 300, 200)
+    println("any")
+    //判断集合中是否有满足条件的元素
+    println(emptyList.any())
+    println(list1.any())
+    println(list3.any { it % 2 == 0 })
+    println(list3.any { it > 4 })
+    println("all")
+    //判断集合中的元素是否都满足条件
+    println(list5.all { it % 2 == 0 })
+    println(list5.all { it > 4 })
+    println("none")
+    //判断集合中所有元素都不满足条件
+    println(emptyList.none())
+    println(list5.none { it % 2 == 1 })
+    println(list5.none { it > 0 })
+    println("count")
+    println(list6.count())
+    println(list6.count { it % 2 == 0 })
+    println("reduce")
+    //累计运算
+    println(list9.reduce { acc, i -> acc + i })
+    println(list9.reduce { acc, i -> acc * i })
+    println(sList.reduce { acc, s -> acc + s })
+    println(sList.reduceRight { acc, s -> s + acc })
+    println("fold")
+    //带初始值的累计运算
+    println(list4.fold(100) { acc, i -> acc + i })
+    println(sList.foldRight("xyz") { s, pre -> pre + s })
+    println("forEach")
+    list9.forEach { value -> if (value > 7) println(value) }
+    list9.forEachIndexed { index, value -> if (value > 8) println("value of index $index is $value, greater than 8") }
+    println("max")
+    println(list9.max())
+    println(sList.max())
+    println("maxBy")
+    //根据表达式的最大值返回元素值
+    println(hList.maxBy { it })
+    println(hList.maxBy { it * (1 - it) })
+    println(hList.maxBy { it * it })
+    println("min")
+    println(list9.min())
+    println(sList.min())
+    println("minBy")
+    //根据表达式的最小值返回元素值
+    println(hList.minBy { it })
+    println(hList.minBy { it * (1 - it) })
+    println(hList.minBy { it * it })
+    println("sumBy")
+    println(list4.sumBy { it })
+    //累加表达式的值
+    println(list4.sumBy { it * it })
+}
+
+/**
+ * 过滤操作符都是返回子集合(不改变自身集合)
+ */
+fun filterList() {
+    val sList = listOf("a", "b", "c")
+    val list6 = listOf(1, 2, 4, 6, 8, 9)
+    val list7 = listOf(1, 2, 3, 4, 5, 6, 7)
+    val list8 = listOf(2, 4, 6, 8, 9, 11, 12, 16)
+    println("take")
+    //挑出该集合前n个元素的子集合
+    println(sList.take(2))
+    println(sList.take(10))
+    println(sList.take(0))
+    println("takeWhile")
+    //正向取满足条件的元素，遇到不满足的元素，直接终止循环，并返回子集合
+    println(list6.takeWhile { it % 2 == 0 })
+    println(list6.takeWhile { it % 2 == 1 })
+    println(list8.takeWhile { it % 2 == 0 })
+    println("takeLast")
+    println(list8.takeLast(2))
+    println(list8.takeLast(10))
+    println(list8.takeLast(0))
+    println("takeLastWhile")
+    //正向取满足条件的元素，遇到不满足的元素，直接终止循环，并返回子集合
+    println(list6.takeLastWhile { it % 2 == 0 })
+    println(list6.takeLastWhile { it % 2 == 1 })
+    println(list8.takeLastWhile { it % 2 == 0 })
+    println("drop")
+    //去除前n个元素返回剩下的元素的子集合
+    println(list8.drop(5))
+    println(list8.drop(10))
+    println(list8.drop(0))
+    println("dropWhile")
+    //去除满足条件的元素，当遇到一个不满足条件的元素时，中止操作，返回剩下的元素子集合。
+    println(list8.dropWhile { it % 2 == 0 })
+    println("dropLast")
+    println(list8.dropLast(3))
+    println(list8.dropLast(10))
+    println(list8.dropLast(0))
+    println("dropLastWhile")
+    println(list8.dropLastWhile { it % 2 == 0 })
+    println("slice")
+    //取开始下标至结束下标元素子集合
+    println(list8.slice(1..3))
+    println(list8.slice(2..7))
+    println(list8.slice(listOf(2, 4, 6)))
+    println("filterTo")
+    //过滤出满足条件的元素并赋值给destination后返回destination
+    val dest = mutableListOf<Int>()
+    println(list7.filterTo(dest) { it > 3 })
+    println("filter")
+    //过滤出满足条件的元素组成的子集合
+    println(list7.filter { it > 3 })
+    println("filterNot")
+    println(list7.filterNot { it > 3 })
+    println("filterNotNull")
+    //过滤掉null元素
+    val nullList = listOf(1, 3, null)
+    println(nullList)
+    println(nullList.filterNotNull())
+}
+
+fun mapList() {
+    val list7 = listOf(1, 2, 3, 4, 5, 6, 7)
+    val NullList = listOf("a", "b", null, "x", null, "z")
+    val sList = listOf("a", "b", "c")
+    println("map")
+    //将集合中的元素通过转换函数transform映射后的结果，存到一个集合中返回
+    println(list7.map { it })
+    println(list7.map { it * it })
+    println(list7.map { it + 10 })
+    println("mapIndex")
+    println(list7.mapIndexed { index, it -> index * it })
+    println("mapNotNull")
+    println(NullList.mapNotNull { it })
+    println("flatMap")
+    println(sList.map { it -> listOf(it + 1, it + 2, it + 3) })
+    println(sList.flatMap { it -> listOf(it + 1, it + 2, it + 3) })
+    //等价于map+flatten
+    //    println(sList.map { it -> listOf(it + 1, it + 2, it + 3) }.flatten())
+}
+
+fun groupList() {
+    val words = listOf("a", "abc", "ab", "def", "abcd")
+    println(words.groupBy { it.length })
+    println(words.groupBy({ it.length }, { it.contains("b") }))
+    //Pair(“key”,”value”) 等价于 “key” to “value”
+    val programmer = listOf("K&R" to "C", Pair("Bjar", "C++"), "Linus" to "C", "James" to "Java")
+    println(programmer.groupBy({ it.second }, { it.first }))
+    //统计列表的元素单词中首字母出现的频数
+    val words1 = "one two three four five six seven eight nine ten".split(' ')
+    println(words1.groupingBy { it.first() }.eachCount())
 }
