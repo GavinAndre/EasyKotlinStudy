@@ -62,4 +62,9 @@ class ListDemoTest {
         sortList()
     }
 
+    @Test
+    fun testProductList() {
+        productList()
+    }
+
 }

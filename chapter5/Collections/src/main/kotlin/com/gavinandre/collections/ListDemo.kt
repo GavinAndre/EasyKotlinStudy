@@ -302,6 +302,52 @@ fun groupList() {
 }
 
 fun sortList() {
-    val list = listOf(1,2,3)
+    val list = listOf(1, 2, 3)
+    val list1 = listOf(1, 3, 2)
+    val sList = mutableListOf("abc", "c", "bn", "opqde", "")
+    println("reversed")
     println(list.reversed())
+    println("sorted")
+    println(list1.sorted())
+    println(list1.sortedDescending())
+    println("sortBy")
+    //可变集合MutableList的排序操作。根据函数映射的结果进行升序排序和降序排序
+    sList.sortBy { it.length }
+    println(sList)
+    sList.sortByDescending { it.length }
+    println(sList)
+}
+
+fun productList() {
+    val list2 = listOf(4, 5)
+    val list3 = listOf(1, 2, 3)
+    val list4 = listOf(4, 5, 6, 7)
+    val sList = listOf("x", "y", "z")
+    val list9 = listOf(1, 2, 3, 4, 5, 6, 7, 8, 9)
+    val listPair = listOf(Pair(1, 2), Pair(3, 4), Pair(5, 6))
+    println("zip")
+    //两个集合按照下标配对，组合成的每个Pair作为新的List集合中的元素，并返回。
+    println(list3.zip(sList))
+    println(sList.zip(list3))
+    //如果两个集合长度不一样，取短的长度。
+    println(list4.zip(sList))
+    println(sList.zip(list4))
+    println(sList.zip(listOf<Int>()))
+    println(list3.zip(sList) { t1, t2 -> t2 + t1 })
+    println(list3.zip(list4) { t1, t2 -> t1 * t2 })
+    println("unzip")
+    println(listPair)
+    println(listPair.unzip())
+    println("partition")
+    //根据表达式将集合拆分成两个子集合组成的 Pair
+    println(list9.partition { it > 5 })
+    println("plus")
+    println(list3.plus(list2))
+    //可用+代替
+    println(list3 + list2)
+    println("plusElement")
+    //plusElement与plus和+等价
+    println(list3.plusElement(10))
+    println(list3.plus(10))
+    println(list3 + 10)
 }
