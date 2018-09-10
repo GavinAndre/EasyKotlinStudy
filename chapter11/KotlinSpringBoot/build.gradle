@@ -1,0 +1,67 @@
+buildscript {
+    ext {
+        kotlinVersion = '1.2.61'
+        springBootVersion = '2.0.4.RELEASE'
+    }
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        // SpringBoot集成Gradle的插件
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+        // Kotlin集成Gradle的插件
+        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${kotlinVersion}")
+        // Kotlin全开放插件,把Kotlin中的所有类都open打开，可被继承
+        classpath("org.jetbrains.kotlin:kotlin-allopen:${kotlinVersion}")
+    }
+}
+
+apply plugin: 'kotlin'
+apply plugin: 'kotlin-spring'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+
+group = 'com.gavinandre'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = 1.8
+compileKotlin {
+    kotlinOptions {
+        freeCompilerArgs = ["-Xjsr305=strict"]
+        jvmTarget = "1.8"
+    }
+}
+compileTestKotlin {
+    kotlinOptions {
+        freeCompilerArgs = ["-Xjsr305=strict"]
+        jvmTarget = "1.8"
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+
+dependencies {
+    // SpringBoot的健康检查监控组件启动器
+    compile('org.springframework.boot:spring-boot-starter-actuator')
+    // JPA启动器
+    compile('org.springframework.boot:spring-boot-starter-data-jpa')
+    // 模板引擎freemarker启动器
+    compile('org.springframework.boot:spring-boot-starter-freemarker')
+    // SpringBoot Web开发依赖
+    compile('org.springframework.boot:spring-boot-starter-web')
+    // Kotlin Jackson库
+    compile('com.fasterxml.jackson.module:jackson-module-kotlin')
+    // Kotlin基于JRE8的标准库
+    compile("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
+    // Kotlin反射库
+    compile("org.jetbrains.kotlin:kotlin-reflect")
+    // SpringBoot开发者工具，例如：热部署等
+    runtime('org.springframework.boot:spring-boot-devtools')
+    // Java的MySQL连接器库
+    runtime('mysql:mysql-connector-java')
+    // 测试启动器
+    testCompile('org.springframework.boot:spring-boot-starter-test')
+}

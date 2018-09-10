@@ -1,0 +1,4 @@
+CREATE SCHEMA `blog` DEFAULT CHARACTER SET utf8 ;
+
+ALTER TABLE `blog`.`article`
+CHANGE COLUMN `content` `content` LONGTEXT NULL DEFAULT NULL ;
