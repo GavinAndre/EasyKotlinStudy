@@ -15,6 +15,8 @@ repositories {
 dependencies {
     compile(kotlin("stdlib-jdk8"))
     testCompile("junit", "junit", "4.12")
+    compile("com.squareup.okhttp3", "okhttp", "3.8.1")
+
 }
 
 configure<JavaPluginConvention> {
